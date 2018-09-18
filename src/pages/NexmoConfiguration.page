@@ -1,0 +1,157 @@
+<apex:page id="NexmoConfiguration" controller="NexmoConfigurationController">
+
+<!-- CLASSIC VisualForce Page -->
+<apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+</apex:outputPanel>
+
+<!-- LIGTHNING VisualForce Page -->
+<apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme4d'}">
+    <style>
+        body {
+            padding: 0!important;
+            overflow: hidden!important;
+        }
+
+        .slds-header {
+            background: #F7F9FC;
+            border-bottom: 1px solid #E0E1E4;
+            padding: 20px 20px;
+            width: 100%;
+            display: inline-block!important;
+        }
+
+        .nexmo-logo {
+            border-radius: 5px;
+            border: 1px solid #ccc!important;
+        }
+
+        .form-help {
+            font-family: "Salesforce Sans", Arial, sans-serif;
+        }
+
+        .form-element-help {
+            color: #c23934;
+            padding-top: 5px;
+            padding-left: 2px;
+        }
+    </style>
+    <apex:stylesheet value="{!URLFOR($Resource.Nexmo, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <div class="nexmo">
+        <header class="slds-header">
+            <img src="{!URLFOR($Resource.Nexmo, 'nexmo_logo.jpg')}" class="nexmo-logo" /><h2 id="id-of-modalheader-h2" class="slds-text-heading_medium" style="margin-left: 20px">Nexmo Configuration</h2>
+        </header>
+        <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert" id="error" style="display: none;">
+            <span class="slds-assistive-text">error</span>
+            <h2>Credensials are not valid.
+                <a href="https://help.nexmo.com/hc/en-us/articles/204014493-Where-can-I-find-my-API-key-and-API-secret-">More Information</a>
+            </h2>
+        </div>
+
+        <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_success" role="alert" id="success" style="display: none;">
+            <span class="slds-assistive-text">error</span>
+            <h2>Credentials are valid.</h2>
+        </div>
+        <div style="width: 450px; padding: 20px;">
+
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="form-element-03">
+                    <abbr class="slds-required" title="required">* </abbr>API Key</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="api_key" required="" class="slds-input" value="{!apiKey}" />
+                </div>
+            </div>
+            <div class="slds-form-element" style="margin-top: 20px;">
+                <label class="slds-form-element__label" for="form-element-03">
+                    <abbr class="slds-required" title="required">* </abbr>API Secret</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="api_secret" required="" class="slds-input" value="{!apiSecret}" />
+                </div>
+            </div>
+            <div class="slds-form-element" style="margin-top: 20px;">
+                <label class="slds-form-element__label" for="form-element-01">Virtual Phone Number</label>
+                <div class="slds-form-element__control">
+                    <input type="text" id="virtual_phone_number" class="slds-input" value="{!virtualPhoneNumber}" />
+                </div>
+            </div>
+            <div class="slds-form-element" style="margin-top: 30px;">
+                <button class="slds-button slds-button_brand" id="validate_credentials_button">Validate Credentials</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var tOut,
+            $success = document.getElementById("success"),
+            $error = document.getElementById("error");
+
+        window.onload = function() {
+            document.getElementById("validate_credentials_button").addEventListener("click", validateCredentials);
+        };
+
+        function validateCredentials() {
+            hideAlerts();
+            if (validateInputs()) {
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.NexmoConfigurationController.validateCredentials}',
+                    document.getElementById("api_key").value,
+                    document.getElementById("api_secret").value,
+                    document.getElementById("virtual_phone_number").value,
+                    function (result, event) {
+                        if (event.status) {
+                            console.log(result);
+                            if (result) {
+                                $success.style.display = 'inline-block';
+                            } else {
+                                $error.style.display = 'inline-block';
+                            }
+
+                            tOut = setTimeout(function () {
+                                hideAlerts();
+                            }, 10000);
+                        }
+                    },
+                    {escape: true}
+                );
+            }
+        }
+
+        function hideAlerts() {
+            clearTimeout(tOut);
+            $success.style.display = 'none';
+            $error.style.display = 'none';
+        }
+
+        function validateInputs() {
+            var result = true,
+                $apiKey = document.getElementById("api_key"),
+                $apiSecret = document.getElementById("api_secret");
+
+            clearErrors();
+            if($apiKey.value === '') {
+                $apiKey.classList.add("slds-has-error");
+                $apiKey.outerHTML += '<ul class="form-help"><li class="form-element-help">Complete this field</li></ul>';
+                document.getElementById("api_key").value = "";
+                result = false;
+            }
+
+            if($apiSecret.value === '') {
+                $apiSecret.classList.add("slds-has-error");
+                $apiSecret.outerHTML += '<ul class="form-help"><li class="form-element-help">Complete this field</li></ul>';
+                document.getElementById("api_secret").value = "";
+                result = false;
+            }
+
+            return result;
+        }
+
+        function clearErrors() {
+            document.getElementById("api_key").classList.remove("slds-has-error");
+            document.getElementById("api_secret").classList.remove("slds-has-error");
+
+            document.querySelectorAll('.form-help').forEach(function(elem){
+                elem.remove()
+            })
+        }
+    </script>
+</apex:outputPanel>
+</apex:page>

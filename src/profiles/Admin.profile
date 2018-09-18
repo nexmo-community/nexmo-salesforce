@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>Nexmo</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NexmoConfigurationController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NexmoConfigurationControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NexmoTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <pageAccesses>
+        <apexPage>NexmoConfiguration</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>NexmoInbound</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <tabVisibilities>
+        <tab>Nexmo_Configuration</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+</Profile>
