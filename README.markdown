@@ -24,7 +24,7 @@ If you have a previous version of Nexmo-Salesforce library installed, you will n
 1. Open your command line to the `install` folder, then deploy using Ant:
 
     ```bash
-    $ ant deployNexmo
+    $ ant deploy Nexmo
     ```
 
 Now all the library code is in your org and you're ready to start coding!
