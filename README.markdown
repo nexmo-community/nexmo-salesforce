@@ -38,7 +38,11 @@ Getting started with the Nexmo API couldn't be easier.
 
 Connection configuration
 -----------
-// TODO
+
+1. Use or create Nexmo account. Your API key and secret can be found and updated under the "API settings" section on the [Settings](https://dashboard.nexmo.com/settings) page in the Nexmo Dashboard.
+1. Go to Nexmo Configuration tab in salesforce and validate connection.
+
+![Nexmo Salesforce Conguration](https://raw.githubusercontent.com/mhrycenk/nexmo-salesforce/master/docs/nexmo_config.jpg)
 
 
 Send an SMS message with the Messages API
