@@ -40,7 +40,7 @@ Connection configuration
 -----------
 
 1. Use or create Nexmo account. Your API key and secret can be found and updated under the "API settings" section on the [Settings](https://dashboard.nexmo.com/settings) page in the Nexmo Dashboard.
-1. Go to Nexmo Configuration tab in salesforce and validate connection.
+1. Go to Nexmo Configuration tab in Salesforce and validate your credentials.
 
 ![Nexmo Salesforce Conguration](https://raw.githubusercontent.com/mhrycenk/nexmo-salesforce/master/docs/nexmo_config.jpg)
 
