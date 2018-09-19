@@ -1,4 +1,4 @@
-# Nexmo Helper Library for Salesforce
+# Nexmo for Salesforce
 
 
 Installation
