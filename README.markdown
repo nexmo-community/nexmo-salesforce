@@ -1,5 +1,5 @@
 # Nexmo for Salesforce
-    Powered by Billennium
+    Powered by [Billennium](https://billennium.com/)
 
 Installation
 ============
