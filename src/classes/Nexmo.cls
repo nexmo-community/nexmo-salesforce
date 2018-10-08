@@ -6,7 +6,7 @@ global class Nexmo {
     global static final String WHATSAPP_CHANNEL = 'whatsapp';
 
     global static final String API_ENDPOINT = 'https://api.nexmo.com';
-    global static final String MESSAGES_API = '/beta/messages';
+    global static final String MESSAGES_API = '/v0.1/messages';
 
     global static void sendMessage(String toId, String fromId, String text, String channel) {
         String body = buildRequestBody(toId, fromId, text, channel);
