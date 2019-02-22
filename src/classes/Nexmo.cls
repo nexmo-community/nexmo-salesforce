@@ -25,6 +25,7 @@ global class Nexmo {
 		}
 	}
 
+
     global static void sendMessage(String toId, String fromId, String text, String channel) {
         String body = buildRequestBody(toId, fromId, text, channel);
 		String authHeader = getAuthorizationHeader();

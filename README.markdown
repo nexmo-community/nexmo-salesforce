@@ -1,9 +1,18 @@
-# Nexmo Helper Library for Salesforce
+# Nexmo for Salesforce
+   Powered by: [Billennium](https://billennium.com/)
 
 Installation
 ============
 
-We've made it easy to get started. Just grab the code from GitHub and deploy it to your Salesforce org with the included Ant script.
+We've made it easy to get started. 
+
+Click Here: <a href="https://githubsfdeploy.herokuapp.com" rel="nofollow">
+   <img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png" style="max-width:100%;">
+</a>
+
+or
+
+Just grab the code from GitHub and deploy it to your Salesforce org with the included Ant script.
 
 
 If you have a previous version of Nexmo-Salesforce library installed, you will need to use Ant to install/update:
