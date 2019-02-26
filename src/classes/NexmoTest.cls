@@ -40,6 +40,7 @@ public with sharing class NexmoTest {
         String authorizationheader =  'BASIC ' + EncodingUtil.base64Encode(headerValue);
 
         System.assertEquals(authorizationheader, Nexmo.getAuthorizationHeader());
-        System.assertNotEquals(null, Nexmo.buildRequest('Test Body'));
+        String authHeader = Nexmo.getAuthorizationHeader();
+        System.assertNotEquals(null, Nexmo.buildRequest('Test Body', authHeader));
     }
 }
