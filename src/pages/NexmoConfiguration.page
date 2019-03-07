@@ -5,7 +5,7 @@
 </apex:outputPanel>
 
 <!-- LIGTHNING VisualForce Page -->
-<apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme4d'}">
+<apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4u'}">
     <style>
         body {
             padding: 0!important;
