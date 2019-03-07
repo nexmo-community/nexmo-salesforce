@@ -1,11 +1,4 @@
 <apex:page id="NexmoConfiguration" controller="NexmoConfigurationController">
-
-<!-- CLASSIC VisualForce Page -->
-<apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
-</apex:outputPanel>
-
-<!-- LIGTHNING VisualForce Page -->
-<apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4u'}">
     <style>
         body {
             padding: 0!important;
@@ -64,7 +57,7 @@
                 <label class="slds-form-element__label" for="form-element-03">
                     <abbr class="slds-required" title="required">* </abbr>API Secret</label>
                 <div class="slds-form-element__control">
-                    <input type="text" id="api_secret" required="" class="slds-input" value="{!apiSecret}" />
+                    <input type="password" id="api_secret" required="" class="slds-input" value="{!apiSecret}" />
                 </div>
             </div>
             <div class="slds-form-element" style="margin-top: 20px;">
@@ -153,5 +146,4 @@
             })
         }
     </script>
-</apex:outputPanel>
 </apex:page>
