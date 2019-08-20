@@ -5,11 +5,10 @@ public with sharing class NexmoConfigurationController {
     public String virtualPhoneNumber { get; set; }
 
     public NexmoConfigurationController() {
-        for(NexmoConfig__c conf : [SELECT API_Key__c, API_Secret__c, Virtual_Phone_Number__c FROM NexmoConfig__c LIMIT 1]) {
+        NexmoConfig__c conf = NexmoConfig__c.getAll().values()[0]; 
             apiKey = conf.API_Key__c;
             apiSecret = conf.API_Secret__c;
             virtualPhoneNumber = conf.Virtual_Phone_Number__c;
-        }
     }
 
     @RemoteAction
@@ -26,9 +25,7 @@ public with sharing class NexmoConfigurationController {
             return false;
         } else {
             NexmoConfig__c conf = new NexmoConfig__c();
-            for(NexmoConfig__c c : [SELECT Id, Name, API_Key__c, API_Secret__c, Virtual_Phone_Number__c FROM NexmoConfig__c LIMIT 1]) {
-                conf = c;
-            }
+            conf = NexmoConfig__c.getAll().values()[0]; 
             conf.Name = 'Nexmo';
             conf.API_Key__c = apiKey;
             conf.API_Secret__c = apiSecret;

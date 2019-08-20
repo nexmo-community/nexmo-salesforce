@@ -33,5 +33,5 @@
         <unique>false</unique>
     </fields>
     <label>NexmoConfig</label>
-    <visibility>Public</visibility>
+    <visibility>Protected</visibility>
 </CustomObject>

@@ -98,10 +98,10 @@ global class Nexmo {
     public static String getAuthorizationHeader() {
         String apiKey = '';
         String apiSecret = '';
-        for(NexmoConfig__c conf : [SELECT API_Key__c, API_Secret__c FROM NexmoConfig__c LIMIT 1]) {
-            apiKey = conf.API_Key__c;
-            apiSecret = conf.API_Secret__c;
-        }
+        NexmoConfig__c conf = NexmoConfig__c.getAll().values()[0]; 
+
+        apiKey = conf.API_Key__c;
+        apiSecret = conf.API_Secret__c;
 
         Blob headerValue = Blob.valueOf(apiKey + ':' + apiSecret);
         return 'BASIC ' + EncodingUtil.base64Encode(headerValue);
