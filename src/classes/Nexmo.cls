@@ -15,17 +15,6 @@ global class Nexmo {
 		@InvocableVariable(required=true) global String channel;
 	}
 
-	@InvocableMethod(label='Send Nexmo Message')
-	global static void sendMessages(List<NexmoRequest> requests) {
-		if(System.Limits.getLimitFutureCalls() > requests.size()) {
-			String authHeader = getAuthorizationHeader();
-			for(NexmoRequest request : requests) {
-				sendMessageWithAuthheader(request.toId, request.fromId, request.text, request.channel, authHeader);
-			}
-		}
-	}
-
-
     global static void sendMessage(String toId, String fromId, String text, String channel) {
         String body = buildRequestBody(toId, fromId, text, channel);
 		String authHeader = getAuthorizationHeader();
@@ -33,14 +22,6 @@ global class Nexmo {
         Http http = new Http();
         HTTPResponse res = http.send(request);
     }
-
-	@Future(callout=true)
-	private static void sendMessageWithAuthheader(String toId, String fromId, String text, String channel, string authHeader) {
-		String body = buildRequestBody(toId, fromId, text, channel);
-        HttpRequest request = buildRequest(body, authHeader);
-        Http http = new Http();
-        HTTPResponse res = http.send(request);
-	}
 
     public static String buildRequestBody(String toId, String fromId, String text, String channel) {
         String result = '';

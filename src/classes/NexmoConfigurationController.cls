@@ -26,12 +26,24 @@ public with sharing class NexmoConfigurationController {
         } else {
             NexmoConfig__c conf = new NexmoConfig__c();
             conf = NexmoConfig__c.getAll().values()[0]; 
-            conf.Name = 'Nexmo';
-            conf.API_Key__c = apiKey;
-            conf.API_Secret__c = apiSecret;
-            conf.Virtual_Phone_Number__c = virtualNumber;
-            upsert conf;
 
+            if (Schema.sObjectType.NexmoConfig__c.fields.Name.isUpdateable() && NexmoConfig__c.fields.Name.sObjectType.getDescribe().isCreateable()) { 
+                conf.Name = 'Nexmo';
+            }
+
+            if (Schema.sObjectType.NexmoConfig__c.fields.API_Key__c.isUpdateable() && NexmoConfig__c.fields.API_Key__c.sObjectType.getDescribe().isCreateable()) { 
+                conf.API_Key__c = apiKey;
+            }
+
+            if (Schema.sObjectType.NexmoConfig__c.fields.API_Secret__c.isUpdateable() && NexmoConfig__c.fields.API_Secret__c.sObjectType.getDescribe().isCreateable()) { 
+                conf.API_Secret__c = apiSecret;
+            }
+
+            if (Schema.sObjectType.NexmoConfig__c.fields.Virtual_Phone_Number__c.isUpdateable() && NexmoConfig__c.fields.Virtual_Phone_Number__c.sObjectType.getDescribe().isCreateable()) { 
+                conf.Virtual_Phone_Number__c = virtualNumber;
+            }
+
+            upsert conf;        
             return true;
         }
     }
